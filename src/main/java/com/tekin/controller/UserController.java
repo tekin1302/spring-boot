@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public User createUser(@RequestBody @Valid final User user) {
+    public User createUser(@RequestBody @Valid  User user) {
         LOGGER.debug("Primit: " + user);
         return userService.save(user);
     }
@@ -34,6 +34,10 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public List<User> listUsers() {
         LOGGER.debug("Received request to list all users");
+        User user = new User();
+        user.setId("44");
+        user.setPassword("parola");
+        userService.save(user);
         return userService.getList();
     }
 
